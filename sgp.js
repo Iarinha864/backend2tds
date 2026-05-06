@@ -9,15 +9,14 @@ function calcularPontuacaoTotal(historicoDePontos) {
     const pontuacaoFinal = historicoDePontos.reduce(somarRodada, 0);
     return pontuacaoFinal;
 };
-
-function filtrarMissoesConcluidas(listaDeMissoes) {
+function filtrarMissoesConcluidas(listaDeMissoes){
     const verificarStatusDaMissao = function(missao) {
         const foiFinalizada = missao.status === "concluída"; //=== Igualdade ESTRITA
         return foiFinalizada;
     };
 
-    const apenasConcluidas = listasDeMissoes.filter(verificarStatusDaMissao);
-    return apenasConcluidas
+    const apenasConcluidas = listaDeMissoes.filter(verificarStatusDaMissao);
+    return apenasConcluidas;
 };
 
 function atualizarInventario(inventarioAtual) {
@@ -25,7 +24,13 @@ function atualizarInventario(inventarioAtual) {
     if(acao === "pegar"){
         const inventarioComItemNovo = [inventarioAtual, NomeDoItem];
         novoInventario = inventarioComItemNovo;
-    } else if (acao === descartar) {
+    } else if (acao === descartar) { missoes = [
+    {nome:"Salvar a aldeia",status:"concluida"},
+    {nome:"Encontrar o mapa",status:"em andamento"},
+    {nome:"Derrotar o chefão",status:"falhou"},
+    {nome:"Coletar recursos",status:"concluida"}
+];
+
     const inventarioSemUltimoItem = inventarioAtual.slice();
     novoInventario = inventarioSemUltimoItem;
     } else {
@@ -36,14 +41,19 @@ function atualizarInventario(inventarioAtual) {
 
 const pontosDoJogador =[100,50,200,10]
 const total = calcularPontuacaoTotal(pontosDoJogador);
+
 console.log("Pontuação Final:",total);
 
 const missoes = [
-    {nome:"Salvar a aldeia",status:"concluida"},
-    {nome "Encontrar o mapa", status:"em andamento"},
-    {nome "Derrotar o chefão", status:"falhou"},
-    {nome:"Coletar recursos", status:"concluida"}
+    {nome: "Salvar a aldeia", status: "concluída"},
+    {nome: "Encontrar o mapa", status: "em andamento"},
+    {nome: "Derrotar o chefão", status: "falhou"},
+    {nome: "Coletar recursos", status: "concluída"}
 ];
 
+const concluidas = filtrarMissoesConcluidas(missoes);
+console.log("Missões Concluídas:", concluidas);
 
-console.log(missoes);
+const mochila = ["Mapa","Lanterna"];
+const mochilaAtualizada = atualizarInventario(mochila,"pegar","Bússola");
+console.log("Mochila após pegar:", mochilaAtualizada);
