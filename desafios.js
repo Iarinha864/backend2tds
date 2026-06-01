@@ -25,7 +25,16 @@ let desconto_porcentagem = 10
  //4- A partir da declaração de anosEmpresa e salario, exiba se recebe promoção, se está em período de experiêcia (90 dias) ou se 
  // já é sênior (outro indentificador)
 
- let anosEmpresa = 3 
- let promoção = 1000
+let anosEmpresa = 3;
+let promocao = 1000;
+
+if (anosEmpresa < 0.25) {
+    console.log("A funcionária está em período de experiência.");
+} else if (anosEmpresa >= 5) {
+    console.log("A funcionária já é sênior.");
+} else if (anosEmpresa > 2) {
+    salario = preco_final + promocao;
+    console.log(`A funcionária recebeu uma promoção após completar 3 anos na empresa! Seu novo salário é : R$${salario}`);
+}
 
  
